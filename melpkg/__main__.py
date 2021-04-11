@@ -1,50 +1,51 @@
 import sys
 import click
+import melpkg as mp
 
 
 @click.group()
-@click.version_option("1.0.0")
+@click.version_option("0.0.1")
 def main():
     """A package manager for linux packages"""
-    print("Hey")
+    print("Starting to work on your demand...")
+    pass
+
+
+@main.command()
+@click.argument('name', required=True)
+def install(**kwargs):
+    """Install a package"""
+    mp.install_package(kwargs['name'])
+    pass
+
+
+@main.command()
+@click.argument('name', required=True)
+def remove(**kwargs):
+    """Remove a package"""
+    mp.remove_package(kwargs['name'])
+    pass
+
+
+@main.command()
+@click.argument('name', required=True)
+def search(**kwargs):
+    """Search a package"""
+    mp.search_package(kwargs['name'])
     pass
 
 
 @main.command()
 def update(**kwargs):
     """Update repository list"""
-    click.echo(kwargs)
-    pass
-
-
-@main.command()
-@click.argument('name', required=False)
-def install(**kwargs):
-    """Install a package"""
-    click.echo(kwargs)
-    pass
-
-
-@main.command()
-@click.argument('name', required=False)
-def remove(**kwargs):
-    """Remove a package"""
-    click.echo(kwargs)
-    pass
-
-
-@main.command()
-@click.argument('name', required=False)
-def search(**kwargs):
-    """Search a package"""
-    click.echo(kwargs)
+    mp.update_list()
     pass
 
 
 @main.command()
 def upgrade(**kwargs):
     """Upgrade all the packages"""
-    click.echo(kwargs)
+    mp.upgrade_packages()
     pass
 
 
