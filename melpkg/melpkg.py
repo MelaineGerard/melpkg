@@ -22,7 +22,7 @@ def update_list():
         for repo in sources:
             data = ur.urlopen(f"{repo}/Packages")
             for line in data:
-                print(line)
+                print(line.decode('utf-8'))
     print("List of package updated!")
 
 
