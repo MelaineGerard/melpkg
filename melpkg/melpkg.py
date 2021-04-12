@@ -21,6 +21,7 @@ def update_list():
     with open("/etc/melpkg/sources.list") as sources:
         for repo in sources:
             data = ur.urlopen(f"{repo}/Packages")
+            data = data.split("\n")
             for line in data:
                 print(line.decode('utf-8'))
     print("List of package updated!")
