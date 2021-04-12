@@ -1,3 +1,6 @@
+import urllib.request as ur
+
+
 def install_package(name: str):
     print(f"Installing package {name}...")
     print(f"Package {name} installed!")
@@ -15,6 +18,11 @@ def search_package(name: str):
 
 def update_list():
     print("Updating the list of package...")
+    with open("/etc/melpkg/sources.list") as sources:
+        for repo in sources:
+            data = ur.urlopen(f"{repo}/RELEASES")
+            for line in data:
+                print(line)
     print("List of package updated!")
 
 
